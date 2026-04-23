@@ -41,6 +41,16 @@ class DataPreprocessor:
             data["leisure_screen_hours"] / data["sleep_hours"]
         ).round(2)
 
+        def get_risk_level(score: float) -> str:
+            if score < 0.8:
+                return "low"
+            elif score < 1.2:
+                return "medium"
+            else:
+                return "high"
+
+        data["risk_level"] = data["addiction_score"].apply(get_risk_level)
+
         return data
 
 
