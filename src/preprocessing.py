@@ -51,6 +51,12 @@ class DataPreprocessor:
 
         data["risk_level"] = data["addiction_score"].apply(get_risk_level)
 
+        data["age_group"] = pd.cut(
+            data["age"],
+            bins=[15, 22, 30, 40, 60],
+            labels=["16-22", "23-30", "31-40", "41-60"],
+        )
+
         return data
 
 
